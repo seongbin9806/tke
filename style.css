@@ -59,14 +59,22 @@ td {
     gap: 5px;
 }
 
+.ver {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-weight: bold;
+    font-size: 10px;
+}
+
 .map-icons {
     display: flex;
     justify-content: center;
-    gap: 3px; /* 아이콘 사이 간격 */
+    gap: 4px; /* 아이콘 사이 간격 */
 }
 
 .map-icons img {
-    width: 18px; /* 요청하신 가로 크기 */
+    width: 20px; /* 요청하신 가로 크기 */
     height: auto;
     cursor: pointer;
     border-radius: 4px;

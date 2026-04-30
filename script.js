@@ -71,12 +71,12 @@ function openMap(type, address, siteName) {
 
     geocoder.addressSearch(address, function(result, status) {
         if (status === kakao.maps.services.Status.OK) {
-            const x = result[0].x; // 경도
-            const y = result[0].y; // 위도
-            // const encodedSite = encodeURIComponent(siteName);
+            const x = result[0].x;
+            const y = result[0].y;
             
             let mapUrl = "";
             if (type === 'kakao') {
+                // 웹 링크 형식이므로 현재 창에서 이동
                 mapUrl = `https://map.kakao.com/link/to/${siteName},${y},${x}`;
             } else if (type === 'naver') {
                 mapUrl = `nmap://route/car?dlat=${y}&dlng=${x}&dname=${siteName}`;
@@ -84,8 +84,8 @@ function openMap(type, address, siteName) {
                 mapUrl = `tmap://route?goalname=${siteName}&goalx=${x}&goaly=${y}`;                
             }
 
-            if (type === 'kakao') window.open(mapUrl, '_blank');
-            else location.href = mapUrl;
+            // 모든 지도 앱/웹을 현재 창에서 실행
+            location.href = mapUrl;
         } else {
             alert("좌표를 찾을 수 없는 주소입니다.");
         }

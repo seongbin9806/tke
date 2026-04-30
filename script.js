@@ -73,15 +73,15 @@ function openMap(type, address, siteName) {
         if (status === kakao.maps.services.Status.OK) {
             const x = result[0].x; // 경도
             const y = result[0].y; // 위도
-            const encodedSite = encodeURIComponent(siteName);
+            // const encodedSite = encodeURIComponent(siteName);
             
             let mapUrl = "";
             if (type === 'kakao') {
-                mapUrl = `https://map.kakao.com/link/to/${encodedSite},${y},${x}`;
+                mapUrl = `https://map.kakao.com/link/to/${siteName},${y},${x}`;
             } else if (type === 'naver') {
-                mapUrl = `nmap://route/car?dlat=${y}&dlng=${x}&dname=${encodedSite}`;
+                mapUrl = `nmap://route/car?dlat=${y}&dlng=${x}&dname=${siteName}`;
             } else if (type === 'tmap') {
-                mapUrl = `tmap://route?goalname=${encodedSite}&goallat=${y}&goallng=${x}`;
+                mapUrl = `tmap://route?goalname=${siteName}&goallat=${y}&goallng=${x}`;
             }
 
             if (type === 'kakao') window.open(mapUrl, '_blank');

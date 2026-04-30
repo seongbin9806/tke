@@ -81,7 +81,7 @@ function openMap(type, address, siteName) {
             } else if (type === 'naver') {
                 mapUrl = `nmap://route/car?dlat=${y}&dlng=${x}&dname=${siteName}`;
             } else if (type === 'tmap') {
-                mapUrl = `tmap://route?goalname=${siteName}&goalx=${y}&goaly=${x}`;
+                mapUrl = `tmap://route?goalname=${siteName}&goalx=${x}&goaly=${y}`;                
             }
 
             if (type === 'kakao') window.open(mapUrl, '_blank');

@@ -50,10 +50,10 @@ function renderTable(headers, rows) {
                         <span class="addr-text">${content}</span>
                         <div class="map-icons">
                             <a href="https://map.kakao.com/link/search/${encodedAddr}" target="_blank">
-                                <img src="/ico/kakao_map.png" alt="카카오지도">
+                                <img src="kakao_map.png" alt="카카오지도">
                             </a>                            
                             <a href="https://map.naver.com/v5/search/${encodedAddr}" target="_blank">
-                                <img src="/ico/naver_map.png" alt="네이버지도">
+                                <img src="naver_map.png" alt="네이버지도">
                             </a>
                         </div>
                     </div>`;

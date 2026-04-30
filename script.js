@@ -55,6 +55,9 @@ function renderTable(headers, rows) {
                             <a href="https://map.naver.com/v5/search/${encodedAddr}" target="_blank">
                                 <img src="naver_map.png" alt="네이버지도">
                             </a>
+                            <a href="nmap://route/car?slat=37.3595953&slng=127.1053971&sname=%EA%B7%B8%EB%A6%B0%ED%8C%A9%ED%86%A0%EB%A6%AC&secoords=37.359761,127.10527&dlng=127.1267772&dlat=37.4200267&dname=%EC%84%B1%EB%82%A8%EC%8B%9C%EC%B2%AD&decoords=37.4189564,127.1256827&v1lng=126.9522394&v1lat=37.464007&v1name=%20%EC%84%9C%EC%9A%B8%EB%8C%80%ED%95%99%EA%B5%90&v1ecoords=37.466358,126.948357&appname=com.example.myapp" target="_blank">
+                                <img src="naver_map.png" alt="네이버지도">
+                            </a>                            
                         </div>
                     </div>`;
             }

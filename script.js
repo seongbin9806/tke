@@ -91,3 +91,18 @@ function openMap(type, address, siteName) {
         }
     });
 }
+
+// 실시간 검색 필터링
+function filterTable() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const table = document.getElementById('dataTable');
+    const tr = table.getElementsByTagName('tr');
+
+    for (let i = 1; i < tr.length; i++) {
+        const siteName = tr[i].getElementsByTagName('td')[0]; // 현장명 컬럼
+        if (siteName) {
+            const txtValue = siteName.textContent || siteName.innerText;
+            tr[i].style.display = txtValue.toLowerCase().indexOf(input) > -1 ? "" : "none";
+        }
+    }
+}

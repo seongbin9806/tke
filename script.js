@@ -74,7 +74,7 @@ function renderTable(headers, rows) {
 
     rows.forEach(row => {        
         const siteName = row[0] || ''; // 현장명 (Index 0)
-        const address = row[2] || '';  // 주소 (Index 2)
+        const address = row[3] || '';  // 주소 (Index 2)
 
         html += '<tr>';
         

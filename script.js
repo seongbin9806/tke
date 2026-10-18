@@ -1,6 +1,6 @@
 let originData = [];
-const targetTitles = ["현  장  명", "계약", "호기", "주        소", "연락처"];
-const geocoder = new kakao.maps.services.Geocoder();
+const targetTitles = ["현  장  명", "계약", "기종", "호기", "승강기번호", "비통번호", "주        소", "연락처"];
+let geocoder = null;
 
 window.onload = function() {
     if (location.protocol === 'file:') {
@@ -8,6 +8,7 @@ window.onload = function() {
         showLocalFilePicker();
     } else {
         // 서버(http/https)에서 열었을 때 → 기존 방식대로 자동 fetch
+        geocoder = new kakao.maps.services.Geocoder();
         loadFromServer('관리현황 25-8.xlsx');
     }
 };
@@ -66,32 +67,55 @@ function renderTable(headers, rows) {
     let html = '<table id="dataTable"><thead><tr>';
         
     headers.forEach(h => {
-        if (h === '계약') return;
+        if (h === '계약' ||
+            h === '승강기번호' ||
+            h === '비통번호' ||
+            h === '기종'
+           ) return;
         html += `<th>${h}</th>`;
     });
     
     html += '</tr></thead><tbody>';
 
-    rows.forEach(row => {        
-        const siteName = row[0] || ''; // 현장명 (Index 0)
-        const address = row[3] || '';  // 주소 (Index 2)
+    rows.forEach(row => {
+        const siteName = row[0] || ''; 
+        const address = row[6] || ''; 
 
+        console.log(row);
         html += '<tr>';
         
         row.forEach((cell, index) => {
             let content = cell || '';
 
             // 주소, 계약
-            if(index == 0 || index == 1) {
+            if(index == 0 || index == 1 || index == 2) {
                 if(index == 0) {
-                    html += `<td>${content}<br/><br/>`;
+                    html += `<td><b>${content}</b><br/><br/>`;
                 }
                 
                 if(index == 1) {
-                    html += ` <b>계약 - ${content}</b></td>`;                    
-                }   
-            } else {
-                if (index === 3 && content !== '') {                    
+                    html += ` 계약 - ${content}<br/><br/>`;
+                }
+                
+                if(index == 2) {
+                    html += ` 기종 - ${content}</td>`;
+                }
+            } else if(index == 3 || index == 4 || index == 5) {
+                
+                if(index == 3) {
+                    html += `<td><b>${content}</b><br/><br/>`;
+                }
+                
+                if(index == 4) {
+                    html += ` 번호 - ${content}<br/><br/>`;
+                }
+                
+                if(index == 5) {
+                    html += ` 비통 - ${content}</td>`;
+                }
+            }
+            else {
+                if (index === 6 && content !== '') {
                     content = `
                         <div class="address-cell">
                             <span class="addr-text">${content}</span>
@@ -101,14 +125,13 @@ function renderTable(headers, rows) {
                                 <img src="tmap.jpeg" alt="티맵" onclick="openMap('tmap', '${address}', '${siteName}')">
                             </div>
                         </div>`;
-                }
-                // 연락처 컬럼 (Index 4)
-                else if (index === 4 && content !== '') {
+                }                
+                else if (index === 8 && content !== '') {
                     const telNum = content.replace(/[^0-9]/g, '');
                     content = `<a href="tel:${telNum}" class="tel-link">${content}</a>`;
                 }
-
-                html += `<td>${content}</td>`;                
+                
+                html += `<td>${content}</td>`;
             }
         });
         html += '</tr>';
@@ -152,9 +175,19 @@ function filterTable() {
 
     for (let i = 1; i < tr.length; i++) {
         const siteName = tr[i].getElementsByTagName('td')[0]; // 현장명 컬럼
-        if (siteName) {
-            const txtValue = siteName.textContent || siteName.innerText;
-            tr[i].style.display = txtValue.toLowerCase().indexOf(input) > -1 ? "" : "none";
+        const emNumber = tr[i].getElementsByTagName('td')[1]; // 비통 컬럼
+        
+        if (siteName || emNumber) {
+            // 각각의 텍스트 값을 가져옴 (요소가 없을 경우 대비해 빈 문자열 처리)
+            const siteText = siteName ? (siteName.textContent || siteName.innerText).toLowerCase() : "";
+            const emText = emNumber ? (emNumber.textContent || emNumber.innerText).toLowerCase() : "";
+            
+            // 현장명이나 비통 중 하나라도 검색어를 포함하면 표시, 아니면 숨김
+            if (siteText.indexOf(input) > -1 || emText.indexOf(input) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
         }
     }
 }

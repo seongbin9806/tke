@@ -97,15 +97,15 @@ td {
 
 /* 각 컬럼 너비 비율 설정 (합계 100%) */
 /* 현장명과 주소가 중요하므로 더 넓게 배분 */
-th:nth-child(1) { width: 30%; } /* 현장명 */
-th:nth-child(2) { width: 15%; } /* 호기 */
+th:nth-child(1) { width: 25%; } /* 현장명 */
+th:nth-child(2) { width: 40%; } /* 호기 */
 th:nth-child(3) { width: 30%; } /* 주소 */
 th:nth-child(4) { width: 25%; } /* 연락처 */
 
 /* 모바일 전용 추가 세팅 */
 @media screen and (max-width: 480px) {
     th, td {
-        font-size: 9px; /* 아주 작은 화면에선 더 작게 */
+        font-size: 8px; /* 아주 작은 화면에선 더 작게 */
         letter-spacing: -0.5px; /* 자간을 줄여서 한 글자라도 더 보이게 */
     }
     

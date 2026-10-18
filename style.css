@@ -6,6 +6,8 @@ body {
     padding: 5px; 
     font-family: 'nanumsquare';    
     background: #fff;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 input:focus {
@@ -88,6 +90,13 @@ td {
     display: block;
 }
 
+#searchInput {
+    width: calc(100% - 20px);
+    margin-bottom: 10px;
+    padding: 8px;
+    font-size: 12px; /* 검색창은 터치하기 편해야 함 */
+}
+
 /* 모바일에서 터치 영역 확보를 위해 패딩 살짝 조정 */
 @media screen and (max-width: 480px) {
     td {
@@ -107,13 +116,6 @@ th:nth-child(4) { width: 25%; } /* 연락처 */
     th, td {
         font-size: 8px; /* 아주 작은 화면에선 더 작게 */
         letter-spacing: -0.5px; /* 자간을 줄여서 한 글자라도 더 보이게 */
-    }
-    
-    #searchInput {
-        width: calc(100% - 20px);
-        margin-bottom: 10px;
-        padding: 8px;
-        font-size: 12px; /* 검색창은 터치하기 편해야 함 */
-    }
+    }        
     
 }

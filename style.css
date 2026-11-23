@@ -97,6 +97,10 @@ td {
     font-size: 12px; /* 검색창은 터치하기 편해야 함 */
 }
 
+table tr:nth-child(-n+526) {
+  background-color: #f0f8ff;
+}
+
 /* 모바일에서 터치 영역 확보를 위해 패딩 살짝 조정 */
 @media screen and (max-width: 480px) {
     td {

@@ -55,7 +55,7 @@ function processWorkbook(arrayBufferData) {
     const titleRow = jsonData[2] || [];
     const colIndices = targetTitles.map(title => titleRow.indexOf(title));
 
-    originData = jsonData.slice(3, 751).map(row => {
+    originData = jsonData.slice(3, 766).map(row => {
         return colIndices.map(index => (index !== -1 ? (row[index] || '') : ''));
     });
 
